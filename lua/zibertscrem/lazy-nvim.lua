@@ -11,18 +11,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.5',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-	},
-	{ "rose-pine/neovim", name = "rose-pine" },
-	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+    { 'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' }, },
+    { "nvim-tree/nvim-tree.lua", dependencies = {  "nvim-tree/nvim-web-devicons", } },
+    { "rose-pine/neovim", name = "rose-pine" },
+    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	{"mbbill/undotree", tag = "rel_6.1"},
-	'tpope/vim-fugitive',
-	--- Uncomment the two plugins below if you want to manage the language servers from neovim
-	-- {'williamboman/mason.nvim'},
-	-- {'williamboman/mason-lspconfig.nvim'},
-
+    {'tpope/vim-fugitive'},
+    {'akinsho/toggleterm.nvim', tag = "v2.9.0", config = true},
 	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
 	{'neovim/nvim-lspconfig'},
 	{"williamboman/mason.nvim"},
