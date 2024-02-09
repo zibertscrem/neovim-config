@@ -30,4 +30,4 @@ vim.keymap.set("n", "<leader>j", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", {silent = true})
-
+vim.keymap.set("n", "<leader>wc", "<cmd>%s/\\r//g<CR>", {silent = true})
