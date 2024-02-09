@@ -1,4 +1,4 @@
-vim.opt.encoding="UTF-8"
+vim.opt.encoding = "UTF-8"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -13,7 +13,7 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = vim.fn.stdpath("data").. "/undodir"
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -31,3 +31,23 @@ vim.opt.colorcolumn = "120"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.fileformat = "unix"
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "*.gohtml", "*.go.html" },
+    callback = function() vim.opt_local.filetype = "gohtmltmpl" end,
+})
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "*.gotmpl", "*.go.tmpl" },
+    callback = function() vim.opt_local.filetype = "gotexttmpl" end,
+})
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "go.mod" },
+    callback = function() vim.opt_local.filetype = "gomod" end,
+})
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "go.work" },
+    callback = function() vim.opt_local.filetype = "gowork" end,
+})
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "go.sum" },
+    callback = function() vim.opt_local.filetype = "gosum" end,
+})

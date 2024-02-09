@@ -34,6 +34,21 @@ require("mason-lspconfig").setup({
             local lua_opts = lsp_zero.nvim_lua_ls()
             require('lspconfig').lua_ls.setup(lua_opts)
         end,
+        gopls = function()
+            local go_opts = {
+                cmd = { "gopls", "-remote=auto" },
+                -- attach to new filetypes too.
+                filetypes = { "go", "gomod", "gowork", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
+                settings = {
+                    gopls = {
+                        -- see ftdetect/go.lua.
+                        ["build.templateExtensions"] = { "gohtml", "html", "gotmpl", "tmpl", "go.html", "go.tmpl" },
+                    },
+                },
+                -- rest of your config.
+            }
+            require('lspconfig').gopls.setup(go_opts)
+        end,
     }
 })
 
