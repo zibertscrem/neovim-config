@@ -34,3 +34,4 @@ vim.keymap.set("n", "<leader>wc", "<cmd>%s/\\r//g<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>n", "<cmd>bnext<CR>", { silent = true })
 vim.keymap.set("n", "<leader>m", "<cmd>bprev<CR>", { silent = true })
+vim.keymap.set("n", "<leader>d", "<cmd>bdelete<CR>", { silent = true })
