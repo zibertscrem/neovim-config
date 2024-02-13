@@ -47,11 +47,15 @@ end)
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = {
+		-- LSPs
 		"rust_analyzer",
 		"pyright",
 		"lua_ls",
 		"gopls",
+		"docker_compose_language_service",
+		"dockerls",
 	},
+	automatic_installation = true,
 	handlers = {
 		lsp_zero.default_setup,
 		lua_ls = function()

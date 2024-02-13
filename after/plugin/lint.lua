@@ -1,4 +1,39 @@
+local mason_installer = require("mason-tool-installer")
+local conform = require("conform")
 local lint = require("lint")
+
+mason_installer.setup({
+	"isort",
+	"black",
+	"stylua",
+	"prettier",
+	"pyproject-flake8",
+	"mypy",
+	"impl",
+})
+
+local conform_opts = {
+	timeout_ms = 500,
+	async = false,
+	lsp_fallback = true,
+}
+conform.setup({
+	formatters_by_ft = {
+		python = { "isort", "black" },
+		lua = { "stylua" },
+		css = { "prettier" },
+		html = { "prettier" },
+		json = { "prettier" },
+		jsx = { "prettier" },
+		javascript = { "prettier" },
+		less = { "prettier" },
+		markdown = { "prettier" },
+		scss = { "prettier" },
+		typescript = { "prettier" },
+		yaml = { "prettier" },
+	},
+	format_on_save = conform_opts,
+})
 lint.linters_by_ft = {
 	python = { "pflake8", "mypy" },
 }
@@ -9,6 +44,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 		lint.try_lint()
 	end,
 })
+vim.keymap.set({ "n", "v" }, "<leader>vf", function()
+	conform.format(conform_opts)
+end)
 vim.keymap.set({ "n", "v" }, "<leader>vl", function()
 	lint.try_lint()
 end)

@@ -67,4 +67,5 @@ require("lazy").setup({
 		opts = {},
 	},
 	{ "mfussenegger/nvim-lint" },
+	{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 })
