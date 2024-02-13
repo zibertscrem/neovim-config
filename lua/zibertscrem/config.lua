@@ -29,7 +29,6 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "120"
 
 vim.opt.clipboard = "unnamedplus"
-vim.opt.fileformat = "unix"
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     pattern = { "*.gohtml", "*.go.html" },
