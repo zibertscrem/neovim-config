@@ -68,4 +68,5 @@ require("lazy").setup({
 	},
 	{ "mfussenegger/nvim-lint" },
 	{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
+	{ "venomlab/goimpl.nvim", tag = "0.1.0" },
 })

@@ -42,6 +42,12 @@ lsp_zero.on_attach(function(_, bufnr)
 	vim.keymap.set("i", "<C-h>", function()
 		vim.lsp.buf.signature_help()
 	end, opts)
+	local goimpl = require("goimpl")
+	if goimpl.is_go() then
+		vim.keymap.set("n", "<leader>im", function()
+			require("goimpl").impl()
+		end, opts)
+	end
 end)
 
 require("mason").setup({})
