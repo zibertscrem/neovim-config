@@ -60,6 +60,7 @@ require("mason-lspconfig").setup({
 		"gopls",
 		"docker_compose_language_service",
 		"dockerls",
+		"marksman",
 	},
 	automatic_installation = true,
 	handlers = {
