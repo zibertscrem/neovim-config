@@ -8,8 +8,6 @@ mason_installer.setup({
 		"black",
 		"stylua",
 		"prettier",
-		"pyproject-flake8",
-		"mypy",
 		"impl",
 	},
 })
@@ -37,7 +35,7 @@ conform.setup({
 	format_on_save = conform_opts,
 })
 lint.linters_by_ft = {
-	python = { "pflake8", "mypy" },
+	-- python = { "pflake8", "mypy" },
 }
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
