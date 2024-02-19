@@ -31,32 +31,38 @@ vim.opt.colorcolumn = "120"
 vim.opt.clipboard = "unnamedplus"
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.gohtml", "*.go.html" },
-	callback = function()
-		vim.opt_local.filetype = "gohtmltmpl"
-	end,
+    pattern = { "*.gohtml", "*.go.html" },
+    callback = function()
+        vim.opt_local.filetype = "gohtmltmpl"
+    end,
 })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.gotmpl", "*.go.tmpl" },
-	callback = function()
-		vim.opt_local.filetype = "gotexttmpl"
-	end,
+    pattern = { "*.gotmpl", "*.go.tmpl" },
+    callback = function()
+        vim.opt_local.filetype = "gotexttmpl"
+    end,
 })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "go.mod" },
-	callback = function()
-		vim.opt_local.filetype = "gomod"
-	end,
+    pattern = { "go.mod" },
+    callback = function()
+        vim.opt_local.filetype = "gomod"
+    end,
 })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "go.work" },
-	callback = function()
-		vim.opt_local.filetype = "gowork"
-	end,
+    pattern = { "go.work" },
+    callback = function()
+        vim.opt_local.filetype = "gowork"
+    end,
 })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "go.sum" },
-	callback = function()
-		vim.opt_local.filetype = "gosum"
-	end,
+    pattern = { "go.sum" },
+    callback = function()
+        vim.opt_local.filetype = "gosum"
+    end,
+})
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "docker-compose*.yaml", "docker-compose*.yml" },
+    callback = function()
+        vim.opt_local.filetype = "yaml.docker-compose"
+    end,
 })
