@@ -39,7 +39,12 @@ conform.setup({
         typescript = { "prettier" },
         yaml = { "prettier" },
     },
-    format_on_save = conform_opts,
+    format_on_save = function(bufnr)
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+        end
+        return conform_opts
+    end,
     formatters = {
         poetry_black = {
             meta = {
@@ -172,3 +177,22 @@ end)
 vim.keymap.set({ "n", "v" }, "<leader>vl", function()
     lint.try_lint()
 end)
+
+vim.api.nvim_create_user_command("FormatToggle", function(args)
+    local is_global = not args.bang
+    if is_global then
+        vim.g.disable_autoformat = not vim.g.disable_autoformat
+        if vim.g.disable_autoformat then
+            vim.print("Autoformat on save disabled globally")
+        else
+            vim.print("Autoformat on save enabled globally")
+        end
+    else
+        vim.b.disable_autoformat = not vim.b.disable_autoformat
+        if vim.b.disable_autoformat then
+            vim.print("Autoformat on save disabled for this buffer")
+        else
+            vim.print("Autoformat on save enabled for this buffer")
+        end
+    end
+end, { desc = "Toggle format-on-save", bang = true })
