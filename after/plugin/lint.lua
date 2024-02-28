@@ -177,6 +177,8 @@ end)
 vim.keymap.set({ "n", "v" }, "<leader>vl", function()
     lint.try_lint()
 end)
+vim.keymap.set("n", "<leader>fg", "<cmd>FormatToggle<CR>")
+vim.keymap.set("n", "<leader>fb", "<cmd>FormatToggle!<CR>")
 
 vim.api.nvim_create_user_command("FormatToggle", function(args)
     local is_global = not args.bang
