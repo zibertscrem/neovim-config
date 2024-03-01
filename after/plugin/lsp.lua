@@ -62,6 +62,8 @@ require("mason-lspconfig").setup({
         "dockerls",
         "marksman",
         "sqlls",
+        "html-lsp",
+        "htmx-lsp",
     },
     automatic_installation = true,
     handlers = {
