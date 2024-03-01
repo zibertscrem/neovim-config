@@ -22,9 +22,9 @@ local conform_opts = {
 conform.setup({
     formatters_by_ft = {
         python = {
-            -- "poetry_pyupgrade",
-            { "poetry_isort", "isort" },
-            { "poetry_black", "black" },
+            { "poetry_pyupgrade" },
+            { "poetry_isort",    "isort" },
+            { "poetry_black",    "black" },
         },
         sql = { "sql_formatter" },
         lua = { "stylua" },
@@ -99,8 +99,7 @@ conform.setup({
             inherit = false,
             args = {
                 "run",
-                "pyupgrade",
-                "--exit-zero-even-if-changed",
+                "ppyupgrade",
                 "$FILENAME",
             },
             cwd = conform_util.root_file({
