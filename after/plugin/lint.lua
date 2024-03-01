@@ -1,18 +1,6 @@
-local mason_installer = require("mason-tool-installer")
 local conform = require("conform")
 local conform_util = require("conform.util")
 local lint = require("lint")
-
-mason_installer.setup({
-    ensure_installed = {
-        "isort",
-        "black",
-        "stylua",
-        "prettier",
-        "impl",
-        "sql-formatter",
-    },
-})
 
 local conform_opts = {
     timeout_ms = 1500,
