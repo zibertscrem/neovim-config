@@ -73,4 +73,6 @@ require("lazy").setup({
         tag = "0.1.0",
     },
     { "derektata/lorem.nvim" },
+    { "mfussenegger/nvim-dap" },
+    { "theHamsta/nvim-dap-virtual-text" },
 })
