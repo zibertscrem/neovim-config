@@ -75,4 +75,5 @@ require("lazy").setup({
     { "derektata/lorem.nvim" },
     { "mfussenegger/nvim-dap" },
     { "theHamsta/nvim-dap-virtual-text" },
+    { "rcarriga/nvim-dap-ui" },
 })

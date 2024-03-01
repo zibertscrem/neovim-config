@@ -1,36 +1,36 @@
 local dap = require("dap")
+local dapui = require("dapui")
 local dap_python = require("lib.dap.python")
 dap.adapters.python = dap_python.adapter
 dap.configurations.python = dap_python.configuration
 require("nvim-dap-virtual-text").setup()
-
-local function repl_open()
-    vim.g.dap_repl_opened = true
-    dap.repl.open()
+dapui.setup()
+dap.listeners.before.attach.dapui_config = function()
+    dapui.open()
 end
-
-local function repl_close()
-    vim.g.dap_repl_opened = false
-    dap.repl.close()
+dap.listeners.before.launch.dapui_config = function()
+    dapui.open()
 end
-
-local function repl_toggle()
-    if not vim.g.dap_repl_opened then
-        repl_open()
-    else
-        repl_close()
-    end
+dap.listeners.before.event_terminated.dapui_config = function()
+    dapui.close()
 end
-
+dap.listeners.before.event_exited.dapui_config = function()
+    dapui.close()
+end
 vim.keymap.set("n", "<leader>bb", function()
     dap.toggle_breakpoint()
 end)
 vim.keymap.set("n", "<leader>vv", function()
-    repl_toggle()
+    dapui.toggle()
+end)
+vim.keymap.set("n", "<leader>df", function()
+    dapui.float_element()
+end)
+vim.keymap.set("n", "<leader>de", function()
+    dapui.eval()
 end)
 vim.keymap.set("n", "<leader>dk", function()
     dap.continue()
-    repl_open()
 end)
 vim.keymap.set("n", "<leader>dl", function()
     dap.run_last()
