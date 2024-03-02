@@ -1,22 +1,25 @@
 local dap = require("dap")
+local dap_virtual_text = require("nvim-dap-virtual-text")
 local dapui = require("dapui")
 local dap_python = require("lib.dap.python")
+
+dap_virtual_text.setup()
+dapui.setup()
+-- Python DAP
 dap.adapters.python = dap_python.adapter
 dap.configurations.python = dap_python.configuration
-require("nvim-dap-virtual-text").setup()
-dapui.setup()
-dap.listeners.before.attach.dapui_config = function()
+
+-- DAP UI auto open/close settings
+dap.listeners.before.attach.dapui_config = function(session, body)
     dapui.open()
 end
-dap.listeners.before.launch.dapui_config = function()
+dap.listeners.before.launch.dapui_config = function(session, body)
     dapui.open()
 end
-dap.listeners.before.event_terminated.dapui_config = function()
+dap.listeners.before.terminate.dapui_config = function(session, body)
     dapui.close()
 end
-dap.listeners.before.event_exited.dapui_config = function()
-    dapui.close()
-end
+
 vim.keymap.set("n", "<leader>bb", function()
     dap.toggle_breakpoint()
 end)
@@ -26,7 +29,7 @@ end)
 vim.keymap.set("n", "<leader>df", function()
     dapui.float_element()
 end)
-vim.keymap.set("n", "<leader>de", function()
+vim.keymap.set({ "n", "v" }, "<leader>de", function()
     dapui.eval()
 end)
 vim.keymap.set("n", "<leader>dk", function()

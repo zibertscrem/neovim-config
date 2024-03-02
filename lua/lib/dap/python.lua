@@ -46,19 +46,6 @@ end
 local function getCurrentModulePath()
     return vim.fn.expand("%:h:gs?/?.?")
 end
-local function supplyModulePath()
-    local defaultModule = ""
-    if vim.g.dap_python_module then
-        defaultModule = vim.g.dap_python_module
-    end
-    local module = vim.fn.input({
-        prompt = "Module: ",
-        default = defaultModule,
-    })
-    module = vim.trim(module)
-    vim.g.dap_python_module = module
-    return module
-end
 M.adapter = function(cb, config)
     if config.request == "attach" then
         ---@diagnostic disable-next-line: undefined-field
@@ -87,6 +74,7 @@ end
 
 M.configuration = {
     {
+        justMyCode = false,
         type = "python",
         request = "launch",
         name = "Launch file",
@@ -96,6 +84,7 @@ M.configuration = {
         pythonPath = pythonPath,
     },
     {
+        justMyCode = false,
         type = "python",
         request = "launch",
         name = "Launch module",
