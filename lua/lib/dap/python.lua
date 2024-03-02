@@ -28,21 +28,6 @@ local function pythonPath()
     end
     return "python"
 end
-local function supplyArguments()
-    local defaultArgs = ""
-    if vim.b.dap_python_arguments then
-        defaultArgs = vim.b.dap_python_arguments
-    end
-    local args = vim.fn.input({
-        prompt = "Arguments: ",
-        default = defaultArgs,
-    })
-    vim.b.dap_python_arguments = args
-    if args == "" then
-        return nil
-    end
-    return vim.split(args, " ")
-end
 local function getCurrentModulePath()
     return vim.fn.expand("%:h:gs?/?.?")
 end
@@ -63,7 +48,7 @@ M.adapter = function(cb, config)
     else
         cb({
             type = "executable",
-            command = utils.mason_package_path("debugpy") .. "/venv/bin/python",
+            command = utils.masonPackagePath("debugpy") .. "/venv/bin/python",
             args = { "-m", "debugpy.adapter" },
             options = {
                 source_filetype = "python",
@@ -79,7 +64,7 @@ M.configuration = {
         request = "launch",
         name = "Launch file",
         program = "${file}", -- This configuration will launch the current file if used.
-        args = supplyArguments,
+        args = utils.supplyArguments,
         cwd = projectRoot,
         pythonPath = pythonPath,
     },
@@ -89,7 +74,7 @@ M.configuration = {
         request = "launch",
         name = "Launch module",
         module = getCurrentModulePath,
-        args = supplyArguments,
+        args = utils.supplyArguments,
         cwd = projectRoot,
         pythonPath = pythonPath,
     },
