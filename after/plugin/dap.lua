@@ -25,10 +25,10 @@ dap.listeners.before.terminate.dapui_config = function()
     dapui.close()
 end
 
-vim.keymap.set("n", "<leader>bb", function()
+vim.keymap.set("n", "<leader>db", function()
     dap.toggle_breakpoint()
 end)
-vim.keymap.set("n", "<leader>vv", function()
+vim.keymap.set("n", "<leader>dd", function()
     dapui.toggle()
 end)
 vim.keymap.set("n", "<leader>df", function()
