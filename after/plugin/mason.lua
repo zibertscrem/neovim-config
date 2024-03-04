@@ -11,7 +11,8 @@ mason_installer.setup({
         -- Tools
         "impl",
         -- DAPs
-        "debugpy",
-        "delve",
+        "debugpy", -- Python
+        "delve", -- Go
+        "codelldb", -- C/C++/Rust
     },
 })
