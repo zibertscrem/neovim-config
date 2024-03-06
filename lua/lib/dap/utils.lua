@@ -15,14 +15,14 @@ end
 
 function M.supplyArguments()
     local defaultArgs = ""
-    if vim.b.dap_arguments then
-        defaultArgs = vim.b.dap_arguments
+    if vim.g.dap_arguments then
+        defaultArgs = vim.g.dap_arguments
     end
     local args = vim.fn.input({
         prompt = "Arguments: ",
         default = defaultArgs,
     })
-    vim.b.dap_arguments = args
+    vim.g.dap_arguments = args
     if args == "" then
         return nil
     end
