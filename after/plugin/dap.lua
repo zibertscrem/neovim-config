@@ -3,6 +3,7 @@ local dap_virtual_text = require("nvim-dap-virtual-text")
 local dapui = require("dapui")
 local dap_python = require("lib.dap.python")
 local dap_go = require("lib.dap.go")
+local dap_rust = require("lib.dap.rust")
 
 dap_virtual_text.setup()
 dapui.setup()
@@ -13,6 +14,9 @@ dap.configurations.python = dap_python.configuration
 -- Go DAP
 dap.adapters.go = dap_go.adapter
 dap.configurations.go = dap_go.configuration
+-- Rust DAP
+dap.adapters.rust = dap_rust.adapter
+dap.configurations.rust = dap_rust.configuration
 
 -- DAP UI auto open/close settings
 dap.listeners.before.attach.dapui_config = function()
