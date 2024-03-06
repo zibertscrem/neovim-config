@@ -31,7 +31,23 @@ local function pythonPath()
     return "python"
 end
 local function getCurrentModulePath()
-    return vim.fn.expand("%:h:gs?/?.?")
+    return vim.fn.expand("%:.:h:gs?/?.?")
+end
+local function getCustomModulePath()
+    local defaultModulePath = getCurrentModulePath()
+    if vim.g.dap_python_module then
+        defaultModulePath = vim.g.dap_python_module
+    end
+    local modulePath = vim.fn.input({
+        prompt = "Module dotted path: ",
+        default = defaultModulePath,
+    })
+    modulePath = vim.trim(modulePath)
+    vim.g.dap_python_module = modulePath
+    if modulePath == "" then
+        return nil
+    end
+    return modulePath
 end
 M.adapter = function(cb, config)
     if config.request == "attach" then
@@ -76,6 +92,16 @@ M.configuration = {
         request = "launch",
         name = "Launch module",
         module = getCurrentModulePath,
+        args = utils.supplyArguments,
+        cwd = projectRoot,
+        pythonPath = pythonPath,
+    },
+    {
+        justMyCode = false,
+        type = "python",
+        request = "launch",
+        name = "Launch module (custom)",
+        module = getCustomModulePath,
         args = utils.supplyArguments,
         cwd = projectRoot,
         pythonPath = pythonPath,
