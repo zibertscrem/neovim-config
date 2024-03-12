@@ -23,8 +23,9 @@ require("lazy").setup({
         },
     },
     {
-        "rose-pine/neovim",
-        name = "rose-pine",
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
     },
     {
         "nvim-treesitter/nvim-treesitter",
