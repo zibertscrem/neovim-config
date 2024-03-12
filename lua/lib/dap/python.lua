@@ -4,7 +4,7 @@ local utils = require("lib.dap.utils")
 local M = {}
 
 local function projectRoot()
-    return utils.root_dir({
+    return utils.rootDir({
         "pyproject.toml",
         "setup.py",
         "setup.cfg",

@@ -5,7 +5,7 @@ function M.masonPackagePath(pkg)
     return mason_path.package_prefix(pkg)
 end
 
-function M.root_dir(files)
+function M.rootDir(files)
     local found = vim.fs.find(files, { upward = true, path = vim.api.nvim_buf_get_name(0) })[1]
     if found then
         return vim.fs.dirname(found)

@@ -4,6 +4,7 @@ local dapui = require("dapui")
 local dap_python = require("lib.dap.python")
 local dap_go = require("lib.dap.go")
 local dap_rust = require("lib.dap.rust")
+local dap_zig = require("lib.dap.zig")
 
 dap_virtual_text.setup()
 dapui.setup()
@@ -17,6 +18,9 @@ dap.configurations.go = dap_go.configuration
 -- Rust DAP
 dap.adapters.rust = dap_rust.adapter
 dap.configurations.rust = dap_rust.configuration
+-- Zig DAP
+dap.adapters.zig = dap_zig.adapter
+dap.configurations.zig = dap_zig.configuration
 
 -- DAP UI auto open/close settings
 dap.listeners.before.attach.dapui_config = function()

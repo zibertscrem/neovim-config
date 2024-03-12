@@ -58,6 +58,7 @@ require("mason-lspconfig").setup({
         "pyright",
         "lua_ls",
         "gopls",
+        "zls",
         "docker_compose_language_service",
         "dockerls",
         "marksman",
