@@ -53,7 +53,7 @@ lsp_zero.on_attach(function(_, bufnr)
         vim.lsp.buf.code_action()
     end, opts)
     vim.keymap.set("n", "<leader>vr", function()
-        vim.lsp.buf.references({}, {
+        vim.lsp.buf.references(nil, {
             on_list = function(options)
                 vim.fn.setqflist({}, " ", options)
                 telescope_builtin.quickfix()
