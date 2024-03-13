@@ -1,4 +1,6 @@
 local lsp_zero = require("lsp-zero")
+local cmp = require("cmp")
+local telescope_builtin = require("telescope.builtin")
 
 lsp_zero.on_attach(function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -7,22 +9,39 @@ lsp_zero.on_attach(function(_, bufnr)
         vim.lsp.buf.hover()
     end, opts)
     vim.keymap.set("n", "gd", function()
-        vim.lsp.buf.definition()
+        telescope_builtin.lsp_definitions()
+        -- vim.lsp.buf.definition()
     end, opts)
     vim.keymap.set("n", "gD", function()
         vim.lsp.buf.declaration()
     end, opts)
     vim.keymap.set("n", "gi", function()
-        vim.lsp.buf.implementation()
+        telescope_builtin.lsp_implementations()
+        -- vim.lsp.buf.implementation()
+    end, opts)
+    vim.keymap.set("n", "gI", function()
+        telescope_builtin.lsp_incoming_calls()
+        -- vim.lsp.buf.implementation()
     end, opts)
     vim.keymap.set("n", "go", function()
-        vim.lsp.buf.type_definition()
+        telescope_builtin.lsp_type_definitions()
+        -- vim.lsp.buf.type_definition()
+    end, opts)
+    vim.keymap.set("n", "gO", function()
+        telescope_builtin.lsp_outgoing_calls()
+        -- vim.lsp.buf.type_definition()
     end, opts)
     vim.keymap.set("n", "<leader>ws", function()
-        vim.lsp.buf.workspace_symbol()
+        telescope_builtin.lsp_workspace_symbols()
+        -- vim.lsp.buf.workspace_symbol()
+    end, opts)
+    vim.keymap.set("n", "<leader>ds", function()
+        telescope_builtin.lsp_document_symbols()
+        -- vim.lsp.buf.workspace_symbol()
     end, opts)
     vim.keymap.set("n", "<leader>vd", function()
-        vim.diagnostic.open_float()
+        telescope_builtin.diagnostics()
+        -- vim.diagnostic.open_float()
     end, opts)
     vim.keymap.set("n", "]d", function()
         vim.diagnostic.goto_next()
@@ -34,7 +53,12 @@ lsp_zero.on_attach(function(_, bufnr)
         vim.lsp.buf.code_action()
     end, opts)
     vim.keymap.set("n", "<leader>vr", function()
-        vim.lsp.buf.references()
+        vim.lsp.buf.references({}, {
+            on_list = function(options)
+                vim.fn.setqflist({}, " ", options)
+                telescope_builtin.quickfix()
+            end,
+        })
     end, opts)
     vim.keymap.set("n", "<leader>vn", function()
         vim.lsp.buf.rename()
@@ -70,6 +94,7 @@ require("mason-lspconfig").setup({
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
+            require("neodev").setup({})
             local lua_opts = lsp_zero.nvim_lua_ls()
             require("lspconfig").lua_ls.setup(lua_opts)
         end,
@@ -91,7 +116,6 @@ require("mason-lspconfig").setup({
     },
 })
 
-local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
@@ -106,7 +130,9 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
         ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-i>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+        ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
         ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-q>"] = cmp.mapping.close(),
     }),
 })
