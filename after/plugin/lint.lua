@@ -28,7 +28,7 @@ conform.setup({
         yaml = { "prettier" },
     },
     format_on_save = function(bufnr)
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        if not vim.g.enable_autoformat or not vim.b[bufnr].enable_autoformat then
             return
         end
         return conform_opts
@@ -170,15 +170,15 @@ vim.keymap.set("n", "<leader>fb", "<cmd>FormatToggle!<CR>")
 vim.api.nvim_create_user_command("FormatToggle", function(args)
     local is_global = not args.bang
     if is_global then
-        vim.g.disable_autoformat = not vim.g.disable_autoformat
-        if vim.g.disable_autoformat then
+        vim.g.enable_autoformat = not vim.g.enable_autoformat
+        if not vim.g.enable_autoformat then
             vim.print("Autoformat on save disabled globally")
         else
             vim.print("Autoformat on save enabled globally")
         end
     else
-        vim.b.disable_autoformat = not vim.b.disable_autoformat
-        if vim.b.disable_autoformat then
+        vim.b.enable_autoformat = not vim.b.enable_autoformat
+        if not vim.b.enable_autoformat then
             vim.print("Autoformat on save disabled for this buffer")
         else
             vim.print("Autoformat on save enabled for this buffer")
