@@ -28,7 +28,7 @@ local k = require("luasnip.nodes.key_indexer").new_key
 
 ls.add_snippets("python", {
     s("main", {
-        t('if __name__ == "main":'),
+        t('if __name__ == "__main__":'),
         t({ "", "\t" }),
         i(0, "pass"),
     }),
