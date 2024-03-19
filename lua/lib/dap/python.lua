@@ -15,6 +15,11 @@ local function pythonPath()
     -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
     -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
     -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+    local activeEnv = vim.fn.environ()["VIRTUAL_ENV"]
+    if activeEnv ~= nil then
+        return activeEnv .. "/bin/python"
+    end
+
     if vim.fn.executable("poetry") == 1 then
         local poetryPython = vim.fn.system({ "poetry", "env", "info", "-e" })
         if vim.fn.executable(poetryPython) == 1 then
