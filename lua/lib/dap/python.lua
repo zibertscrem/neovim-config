@@ -6,6 +6,7 @@ local M = {}
 local function projectRoot()
     return utils.rootDir({
         "pyproject.toml",
+        "requirements.txt",
         "setup.py",
         "setup.cfg",
         "poetry.toml",
