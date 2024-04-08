@@ -81,4 +81,7 @@ require("lazy").setup({
         "folke/neodev.nvim",
         opts = {},
     },
+    {
+        "https://github.com/nvim-treesitter/nvim-treesitter-context",
+    },
 })
