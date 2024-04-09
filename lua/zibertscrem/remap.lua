@@ -44,3 +44,6 @@ vim.keymap.set("n", "<C-h>", "`1")
 vim.keymap.set("n", "<C-j>", "`2")
 vim.keymap.set("n", "<C-k>", "`3")
 vim.keymap.set("n", "<C-l>", "`4")
+
+vim.keymap.set("n", "+", "<C-a>")
+vim.keymap.set("n", "-", "<C-x>")
