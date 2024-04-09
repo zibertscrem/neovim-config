@@ -28,10 +28,16 @@ conform.setup({
         yaml = { "prettier" },
     },
     format_on_save = function(bufnr)
-        if not vim.g.enable_autoformat or not vim.b[bufnr].enable_autoformat then
-            return
+        if vim.g.enable_autoformat == nil and vim.b[bufnr].enable_autoformat then
+            return conform_opts
         end
-        return conform_opts
+        if vim.b[bufnr].enable_autoformat == nil and vim.g.enable_autoformat then
+            return conform_opts
+        end
+        if vim.g.enable_autoformat and vim.b[bufnr].enable_autoformat then
+            return conform_opts
+        end
+        return nil
     end,
     formatters = {
         poetry_black = {
