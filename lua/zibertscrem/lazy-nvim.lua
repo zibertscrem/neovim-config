@@ -84,4 +84,14 @@ require("lazy").setup({
     {
         "https://github.com/nvim-treesitter/nvim-treesitter-context",
     },
+    {
+        "nvim-lualine/lualine.nvim",
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+    },
+    {
+        "hiphish/rainbow-delimiters.nvim",
+    },
 })
