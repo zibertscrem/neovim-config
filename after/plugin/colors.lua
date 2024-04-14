@@ -1,5 +1,4 @@
 function ApplyColors()
-    local hooks = require("ibl.hooks")
     require("catppuccin").setup({
         flavour = "mocha",
         transparent_background = true,
@@ -16,13 +15,13 @@ function ApplyColors()
     vim.api.nvim_set_hl(0, "DapStoppedLine", { ctermbg = 0, bg = "#31353f" })
     vim.api.nvim_set_hl(0, "DapStoppedNum", { ctermbg = 0, fg = "#98c379", bg = "#31353f" })
 
-    vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-    vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+    vim.api.nvim_set_hl(0, "RainbowRed", { ctermbg = 0, fg = "#E06C75" })
+    vim.api.nvim_set_hl(0, "RainbowYellow", { ctermbg = 0, fg = "#E5C07B" })
+    vim.api.nvim_set_hl(0, "RainbowBlue", { ctermbg = 0, fg = "#61AFEF" })
+    vim.api.nvim_set_hl(0, "RainbowOrange", { ctermbg = 0, fg = "#D19A66" })
+    vim.api.nvim_set_hl(0, "RainbowGreen", { ctermbg = 0, fg = "#98C379" })
+    vim.api.nvim_set_hl(0, "RainbowViolet", { ctermbg = 0, fg = "#C678DD" })
+    vim.api.nvim_set_hl(0, "RainbowCyan", { ctermbg = 0, fg = "#56B6C2" })
 
     local highlight = {
         "RainbowRed",
@@ -64,14 +63,14 @@ function ApplyColors()
         linehl = "DapStoppedLine",
         numhl = "DapStoppedNum",
     })
-
     require("rainbow-delimiters.setup").setup({
         highlight = highlight,
+        blacklist = { "zig" },
     })
     require("ibl").setup({
         indent = { highlight = highlight },
+        exclude = { filetypes = { "zig" } },
     })
-    hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     require("lualine").setup({ options = { theme = "material" } })
 end
 
