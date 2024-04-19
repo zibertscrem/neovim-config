@@ -95,6 +95,7 @@ require("mason-lspconfig").setup({
         "sqlls",
         "html",
         "htmx",
+        "jdtls",
     },
     automatic_installation = true,
     handlers = {
