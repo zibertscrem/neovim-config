@@ -16,6 +16,7 @@ conform.setup({
         },
         sql = { "sql_formatter" },
         lua = { "stylua" },
+        java = { "google-java-format" },
         css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },

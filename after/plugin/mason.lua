@@ -8,6 +8,7 @@ mason_installer.setup({
         "stylua",
         "prettier",
         "sql-formatter",
+        "google-java-format",
         -- Tools
         "impl",
         -- DAPs
