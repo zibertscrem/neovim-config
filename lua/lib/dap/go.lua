@@ -49,4 +49,7 @@ M.configuration = {
         buildFlags = buildFlags,
     },
 }
+M.neotest = require("neotest-go")({
+    recursive_run = true,
+})
 return M

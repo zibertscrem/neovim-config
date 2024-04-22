@@ -3,6 +3,7 @@ local codelldb = require("lib.dap.codelldb")
 
 local M = {}
 local function findProgram()
+    vim.fn.delete("zig-out", "rf")
     vim.fn.system({ "zig", "build", "-Doptimize=Debug" })
     return codelldb.findDebugTarget(vim.fn.getcwd() .. "/zig-out/bin/", 2)
 end
@@ -17,4 +18,5 @@ M.configuration = {
         args = utils.supplyArguments,
     },
 }
+M.neotest = require("neotest-zig")
 return M

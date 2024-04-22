@@ -5,7 +5,7 @@ function M.masonPackagePath(pkg)
     return mason_path.package_prefix(pkg)
 end
 
-function M.masonSharePacakgePath(pkg)
+function M.masonSharePackagePath(pkg)
     return mason_path.share_prefix(pkg)
 end
 
@@ -31,6 +31,14 @@ function M.supplyArguments()
         return nil
     end
     return vim.split(args, " ")
+end
+
+function M.addOrCreate(tbl, extension)
+    local existing = tbl
+    if existing == nil then
+        existing = {}
+    end
+    return vim.tbl_extend("keep", existing, extension)
 end
 
 return M

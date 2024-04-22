@@ -1,17 +1,20 @@
+local neotest = require("neotest")
 local dap = require("dap")
 local dap_virtual_text = require("nvim-dap-virtual-text")
 local dapui = require("dapui")
+local utils = require("lib.dap.utils")
 local dap_python = require("lib.dap.python")
 local dap_go = require("lib.dap.go")
 local dap_rust = require("lib.dap.rust")
 local dap_zig = require("lib.dap.zig")
+local dap_java = require("lib.dap.java")
 
 dap_virtual_text.setup()
 dapui.setup()
 
 -- Python DAP
 dap.adapters.python = dap_python.adapter
-dap.configurations.python = dap_python.configuration
+dap.configurations.python = utils.addOrCreate(dap.configurations.python, dap_python.configuration)
 -- Go DAP
 dap.adapters.go = dap_go.adapter
 dap.configurations.go = dap_go.configuration
@@ -72,6 +75,7 @@ vim.keymap.set({ "n", "v" }, "<leader>de", function()
         end
     end)
 end)
+
 vim.keymap.set("n", "<leader>dk", function()
     dap.continue()
 end)
@@ -89,4 +93,37 @@ vim.keymap.set("n", "<leader>do", function()
 end)
 vim.keymap.set("n", "<leader>dt", function()
     dap.terminate()
+end)
+neotest.setup({
+    adapters = {
+        dap_python.neotest,
+        dap_zig.neotest,
+        dap_go.neotest,
+        dap_java.neotest,
+        dap_rust.neotest,
+    },
+})
+vim.keymap.set("n", "<leader>tt", function()
+    neotest.summary.toggle()
+end)
+vim.keymap.set("n", "<leader>tk", function()
+    neotest.run.run()
+end)
+vim.keymap.set("n", "<leader>tf", function()
+    neotest.run.run(vim.fn.expand("%"))
+end)
+vim.keymap.set("n", "<leader>tr", function()
+    neotest.run.run(vim.fn.getcwd())
+end)
+vim.keymap.set("n", "<leader>tl", function()
+    neotest.run.run_last()
+end)
+vim.keymap.set("n", "<leader>td", function()
+    neotest.run.run({ strategy = "dap" })
+end)
+vim.keymap.set("n", "<leader>tw", function()
+    neotest.watch.toggle()
+end)
+vim.keymap.set("n", "<leader>to", function()
+    neotest.output.open()
 end)

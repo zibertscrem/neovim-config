@@ -52,7 +52,6 @@ require("lazy").setup({
         "williamboman/mason.nvim",
         opts = {
             registries = {
-                "github:nvim-java/mason-registry",
                 "github:mason-org/mason-registry",
             },
         },
@@ -87,12 +86,34 @@ require("lazy").setup({
     { "mfussenegger/nvim-dap" },
     { "theHamsta/nvim-dap-virtual-text" },
     {
+        "nvim-neotest/nvim-nio",
+    },
+    {
         "rcarriga/nvim-dap-ui",
-        dependencies = { "nvim-neotest/nvim-nio" },
+    },
+    {
+        "mfussenegger/nvim-jdtls",
+    },
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-neotest/neotest-python",
+            "rcasia/neotest-java",
+            "nvim-neotest/neotest-go",
+            {
+                "lawrence-laz/neotest-zig",
+                branch = "v1.2.0",
+            },
+            {
+                "mrcjkb/rustaceanvim",
+                version = "^4", -- Recommended
+                lazy = false, -- This plugin is already lazy
+            },
+        },
     },
     {
         "folke/neodev.nvim",
-        opts = {},
     },
     {
         "https://github.com/nvim-treesitter/nvim-treesitter-context",
@@ -106,15 +127,5 @@ require("lazy").setup({
     },
     {
         "hiphish/rainbow-delimiters.nvim",
-    },
-    {
-        "nvim-java/nvim-java",
-        dependencies = {
-            "nvim-java/lua-async-await",
-            "nvim-java/nvim-java-core",
-            "nvim-java/nvim-java-test",
-            "nvim-java/nvim-java-dap",
-            "MunifTanjim/nui.nvim",
-        },
     },
 })

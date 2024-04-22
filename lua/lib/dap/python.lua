@@ -113,5 +113,12 @@ M.configuration = {
         pythonPath = pythonPath,
     },
 }
+M.neotest = require("neotest-python")({
+    dap = {
+        justMyCode = false,
+        cwd = projectRoot,
+    },
+    python = pythonPath,
+})
 
 return M

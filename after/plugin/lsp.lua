@@ -120,6 +120,8 @@ require("mason-lspconfig").setup({
             }
             require("lspconfig").gopls.setup(go_opts)
         end,
+        jdtls = function() end,
+        rust_analyzer = function() end,
     },
 })
 

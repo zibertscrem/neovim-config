@@ -18,4 +18,5 @@ M.configuration = {
         args = utils.supplyArguments,
     },
 }
+M.neotest = require("rustaceanvim.neotest")
 return M

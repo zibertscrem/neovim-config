@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<CR>")
 
 vim.keymap.set("n", "<C-w><C-v>", "<cmd>vsplit<CR>")
 vim.keymap.set("n", "<C-w><C-s>", "<cmd>split<CR>")
