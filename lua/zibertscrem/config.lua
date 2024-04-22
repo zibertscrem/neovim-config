@@ -66,3 +66,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
         vim.opt_local.filetype = "yaml.docker-compose"
     end,
 })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "*.zig.zon" },
+    callback = function()
+        vim.opt_local.filetype = "zig"
+    end,
+})
