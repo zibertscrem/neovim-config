@@ -2,7 +2,6 @@ local neotest = require("neotest")
 local dap = require("dap")
 local dap_virtual_text = require("nvim-dap-virtual-text")
 local dapui = require("dapui")
-local utils = require("lib.dap.utils")
 local dap_python = require("lib.dap.python")
 local dap_go = require("lib.dap.go")
 local dap_rust = require("lib.dap.rust")
@@ -14,7 +13,7 @@ dapui.setup()
 
 -- Python DAP
 dap.adapters.python = dap_python.adapter
-dap.configurations.python = utils.addOrCreate(dap.configurations.python, dap_python.configuration)
+dap.configurations.python = dap_python.configuration
 -- Go DAP
 dap.adapters.go = dap_go.adapter
 dap.configurations.go = dap_go.configuration
