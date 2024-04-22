@@ -16,5 +16,6 @@ mason_installer.setup({
         "delve",        -- Go
         "codelldb",     -- C/C++/Rust
         "java-debug-adapter", -- Java
+        "java-test", -- Java
     },
 })
