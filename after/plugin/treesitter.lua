@@ -20,6 +20,13 @@ require("nvim-treesitter.configs").setup({
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
+        disable = function(_, bufnr)
+            local max_filesize = 100 * 1024 -- 100 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+            if ok and stats and stats.size > max_filesize then
+                return true
+            end
+        end,
     },
 })
 vim.treesitter.language.register("html", "gohtmltmpl")
