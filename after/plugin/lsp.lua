@@ -31,6 +31,13 @@ lsp_zero.on_attach(function(_, bufnr)
         telescope_builtin.lsp_outgoing_calls()
         -- vim.lsp.buf.type_definition()
     end, opts)
+
+    vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set("n", "<space>wl", function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
+
     vim.keymap.set("n", "<leader>ws", function()
         telescope_builtin.lsp_workspace_symbols()
         -- vim.lsp.buf.workspace_symbol()
@@ -96,6 +103,7 @@ require("mason-lspconfig").setup({
         "html",
         "htmx",
         "jdtls",
+        "ruff",
     },
     automatic_installation = true,
     handlers = {
