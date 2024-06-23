@@ -62,7 +62,7 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("n", "[d", function()
         vim.diagnostic.goto_prev()
     end, opts)
-    vim.keymap.set("n", "<leader>ca", function()
+    vim.keymap.set({ "n", "v" }, "<leader>ca", function()
         vim.lsp.buf.code_action()
     end, opts)
     vim.keymap.set("n", "<leader>vr", function()
@@ -92,7 +92,7 @@ require("mason-lspconfig").setup({
     ensure_installed = {
         -- LSPs
         "rust_analyzer",
-        "pyright",
+        "pylsp",
         "lua_ls",
         "gopls",
         "zls",
@@ -103,7 +103,6 @@ require("mason-lspconfig").setup({
         "html",
         "htmx",
         "jdtls",
-        "ruff",
     },
     automatic_installation = true,
     handlers = {
@@ -130,6 +129,31 @@ require("mason-lspconfig").setup({
         end,
         jdtls = function() end,
         rust_analyzer = function() end,
+        pylsp = function()
+            require("lspconfig").pylsp.setup({
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            rope_autoimport = {
+                                enabled = true,
+                            },
+                            rope_completion = {
+                                enabled = true,
+                                eager = true,
+                            },
+                            ruff = {
+                                enabled = true,
+                            },
+                            pylsp_mypy = {
+                                enabled = true,
+                                live_mode = true,
+                                strict = true,
+                            },
+                        },
+                    },
+                },
+            })
+        end,
     },
 })
 
