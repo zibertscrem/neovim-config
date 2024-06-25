@@ -139,10 +139,18 @@ require("mason-lspconfig").setup({
                             },
                             rope_completion = {
                                 enabled = true,
-                                eager = true,
                             },
                             ruff = {
                                 enabled = true,
+                                formatEnabled = true,
+                                format = { "I" },
+                                extendSelect = { "ALL" },
+                                extendIgnore = { "CPY", "ANN", "D", "PL", "FA" },
+                                extendFixable = { "ALL" },
+                                extendSafeFixes = { "ALL" },
+                                unsafeFixes = true,
+                                lineLength = 120,
+                                preview = true,
                             },
                             pylsp_mypy = {
                                 enabled = true,
