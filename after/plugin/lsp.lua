@@ -136,6 +136,7 @@ require("mason-lspconfig").setup({
                         plugins = {
                             rope_autoimport = {
                                 enabled = true,
+                                memory = true,
                             },
                             rope_completion = {
                                 enabled = true,
