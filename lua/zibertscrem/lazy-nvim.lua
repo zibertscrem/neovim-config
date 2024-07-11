@@ -103,7 +103,7 @@ require("lazy").setup({
             "nvim-neotest/neotest-go",
             {
                 "lawrence-laz/neotest-zig",
-                branch = "v1.2.0",
+                branch = "main",
             },
             {
                 "mrcjkb/rustaceanvim",

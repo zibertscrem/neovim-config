@@ -24,7 +24,7 @@
   "neotest-go": { "branch": "main", "commit": "92950ad7be2ca02a41abca5c6600ff6ffaf5b5d6" },
   "neotest-java": { "branch": "main", "commit": "7e5ac2817b0c0e81cd62f2e849bb540acb4314ac" },
   "neotest-python": { "branch": "master", "commit": "2e83d2bc00acbcc1fd529dbf0a0e677cabfe6b50" },
-  "neotest-zig": { "branch": "v1.2.0", "commit": "1a22c808c28073c9b3122c52ca98bb29c39d7750" },
+  "neotest-zig": { "branch": "main", "commit": "7cc48ba642a6acb96f377054cc4439c6a135fb5d" },
   "nvim-cmp": { "branch": "main", "commit": "a110e12d0b58eefcf5b771f533fc2cf3050680ac" },
   "nvim-dap": { "branch": "master", "commit": "6f79b822997f2e8a789c6034e147d42bc6706770" },
   "nvim-dap-ui": { "branch": "master", "commit": "b7267003ba4dd860350be86f75b9d9ea287cedca" },

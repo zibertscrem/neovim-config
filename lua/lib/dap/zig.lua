@@ -18,5 +18,5 @@ M.configuration = {
         args = utils.supplyArguments,
     },
 }
-M.neotest = require("neotest-zig")
+M.neotest = require("neotest-zig")({ dap = { adapter = "zig" } })
 return M
