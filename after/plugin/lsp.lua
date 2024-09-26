@@ -2,7 +2,7 @@ local lsp_zero = require("lsp-zero")
 local cmp = require("cmp")
 local telescope_builtin = require("telescope.builtin")
 
-lsp_zero.on_attach(function(_, bufnr)
+local function on_attach(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "K", function()
@@ -79,13 +79,53 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("i", "<C-h>", function()
         vim.lsp.buf.signature_help()
     end, opts)
+    vim.keymap.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts)
+    vim.keymap.set("n", "<leader>fs", "<cmd>LspStart<CR>", opts)
+    vim.keymap.set("n", "<leader>hrs", function()
+        local detach_clients = {}
+        local clients = require("lspconfig.util").get_lsp_clients({ bufnr = bufnr })
+        for _, client in ipairs(clients) do
+            if client.attached_buffers[bufnr] then
+                detach_clients[client.name] = { client, vim.lsp.get_buffers_by_client_id(client.id) }
+                client.stop(true)
+                local timer = vim.loop.new_timer()
+                timer:start(
+                    500,
+                    100,
+                    vim.schedule_wrap(function()
+                        for client_name, tuple in pairs(detach_clients) do
+                            if require("lspconfig.configs")[client_name] then
+                                local client, attached_buffers = unpack(tuple)
+                                if client.is_stopped() then
+                                    for _, buf in pairs(attached_buffers) do
+                                        require("lspconfig.configs")[client_name].launch(buf)
+                                    end
+                                    detach_clients[client_name] = nil
+                                end
+                            end
+                        end
+
+                        if next(detach_clients) == nil and not timer:is_closing() then
+                            timer:close()
+                        end
+                    end)
+                )
+            end
+        end
+        -- lsputil.get_lsp_clients({ }
+    end, opts)
     local goimpl = require("goimpl")
     if goimpl.is_go() then
         vim.keymap.set("n", "<leader>im", function()
             require("goimpl").impl()
         end, opts)
     end
-end)
+end
+
+lsp_zero.on_attach(on_attach)
+require("lspconfig").mojo.setup({
+    on_attach = on_attach,
+})
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
