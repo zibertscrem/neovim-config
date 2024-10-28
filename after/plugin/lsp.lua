@@ -66,7 +66,7 @@ local function on_attach(_, bufnr)
         vim.lsp.buf.code_action()
     end, opts)
     vim.keymap.set("n", "<leader>vr", function()
-        vim.lsp.buf.references(nil, {
+        vim.lsp.buf.references({includeDeclaration = false}, {
             on_list = function(options)
                 vim.fn.setqflist({}, " ", options)
                 telescope_builtin.quickfix()
