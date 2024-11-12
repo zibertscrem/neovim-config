@@ -38,6 +38,7 @@ require("lazy").setup({
         tag = "rel_6.1",
     },
     { "tpope/vim-fugitive" },
+    { "idanarye/vim-merginal" },
     {
         "akinsho/toggleterm.nvim",
         tag = "v2.9.0",
