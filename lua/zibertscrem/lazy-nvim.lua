@@ -127,6 +127,9 @@ require("lazy").setup({
         main = "ibl",
     },
     {
+        "kiyoon/treesitter-indent-object.nvim",
+    },
+    {
         "hiphish/rainbow-delimiters.nvim",
     },
 })
