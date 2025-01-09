@@ -66,7 +66,7 @@ local function on_attach(_, bufnr)
         vim.lsp.buf.code_action()
     end, opts)
     vim.keymap.set("n", "<leader>vr", function()
-        vim.lsp.buf.references({includeDeclaration = false}, {
+        vim.lsp.buf.references({ includeDeclaration = false }, {
             on_list = function(options)
                 vim.fn.setqflist({}, " ", options)
                 telescope_builtin.quickfix()
@@ -124,6 +124,10 @@ end
 
 lsp_zero.on_attach(on_attach)
 require("lspconfig").mojo.setup({
+    on_attach = on_attach,
+})
+require("lspconfig").gdscript.setup({
+    filetypes = { "gd", "gdscript" },
     on_attach = on_attach,
 })
 

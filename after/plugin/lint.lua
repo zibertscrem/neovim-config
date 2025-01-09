@@ -22,6 +22,7 @@ conform.setup({
         scss = { "prettier" },
         typescript = { "prettier" },
         yaml = { "prettier" },
+        gdscript = { "gdformat" },
     },
     format_on_save = function(bufnr)
         if vim.g.enable_autoformat == nil and vim.b[bufnr].enable_autoformat then
@@ -43,6 +44,7 @@ end)
 
 lint.linters_by_ft = {
     python = {},
+    gdscript = { "gdlint" },
 }
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

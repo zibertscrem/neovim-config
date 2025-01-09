@@ -7,6 +7,7 @@ mason_installer.setup({
         "prettier",
         "sql-formatter",
         "google-java-format",
+        "gdtoolkit",
         -- Tools
         "impl",
         -- DAPs
