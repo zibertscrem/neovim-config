@@ -126,10 +126,19 @@ lsp_zero.on_attach(on_attach)
 require("lspconfig").mojo.setup({
     on_attach = on_attach,
 })
-require("lspconfig").gdscript.setup({
-    filetypes = { "gd", "gdscript" },
-    on_attach = on_attach,
-})
+
+if os.getenv("WSL_DISTRO_NAME") ~= nil then
+    require("lspconfig").gdscript.setup({
+        filetypes = { "gd", "gdscript" },
+        on_attach = on_attach,
+        cmd = { "godot-wsl-lsp", "--useMirroredNetworking" },
+    })
+else
+    require("lspconfig").gdscript.setup({
+        filetypes = { "gd", "gdscript" },
+        on_attach = on_attach,
+    })
+end
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
