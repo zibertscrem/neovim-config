@@ -127,16 +127,14 @@ require("lspconfig").mojo.setup({
     on_attach = on_attach,
 })
 
-if os.getenv("WSL_DISTRO_NAME") ~= nil then
+if os.getenv("WSL_DISTRO_NAME") ~= nil then -- Easy way to check if it is WSL or no
     require("lspconfig").gdscript.setup({
-        filetypes = { "gd", "gdscript" },
-        on_attach = on_attach,
-        cmd = { "godot-wsl-lsp", "--useMirroredNetworking" },
+        on_attach = on_attach,              -- Your buffer on_attach function
+        cmd = { "godot-wsl-proxy", "run" },
     })
 else
     require("lspconfig").gdscript.setup({
-        filetypes = { "gd", "gdscript" },
-        on_attach = on_attach,
+        on_attach = on_attach, -- Your buffer on_attach function
     })
 end
 
