@@ -231,6 +231,7 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
         ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
+        ["<Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
         ["<C-i>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-q>"] = cmp.mapping.close(),
