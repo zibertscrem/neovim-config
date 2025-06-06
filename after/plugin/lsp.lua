@@ -242,24 +242,6 @@ require("mason-lspconfig").setup({
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
-<<<<<<< HEAD
-    sources = {
-        { name = "luasnip", keyword_length = 2 },
-        { name = "nvim_lsp" },
-        { name = "path" },
-        { name = "nvim_lua" },
-        { name = "buffer",  keyword_length = 3 },
-    },
-    formatting = lsp_zero.cmp_format(),
-    mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
-        ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-        ["<Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
-        ["<C-i>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-q>"] = cmp.mapping.close(),
-    }),
-=======
 	sources = {
 		{ name = "luasnip", keyword_length = 2 },
 		{ name = "nvim_lsp" },
@@ -276,5 +258,4 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-q>"] = cmp.mapping.close(),
 	}),
->>>>>>> e1085d0 (Trying to fix LSP for python)
 })
