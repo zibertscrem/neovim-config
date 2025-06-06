@@ -74,7 +74,6 @@ require("lazy").setup({
     },
     {
         "stevearc/conform.nvim",
-        tag = "v5.2.1",
         opts = {},
     },
     { "mfussenegger/nvim-lint" },

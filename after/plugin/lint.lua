@@ -4,11 +4,11 @@ local lint = require("lint")
 local conform_opts = {
     timeout_ms = 1500,
     async = false,
-    lsp_fallback = "always",
+    lsp_format = "first",
 }
 conform.setup({
     formatters_by_ft = {
-        python = {},
+        python = { "ruff_organize_imports", "ruff_format", "ruff_fix" },
         sql = { "sql_formatter" },
         lua = { "stylua" },
         java = { "google-java-format" },
