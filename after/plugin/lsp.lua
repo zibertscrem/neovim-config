@@ -180,62 +180,6 @@ require("mason-lspconfig").setup({
 		end,
 		jdtls = function() end,
 		rust_analyzer = function() end,
-		pylsp = function()
-			require("lspconfig").pylsp.setup({
-				settings = {
-					pylsp = {
-						plugins = {
-							jedi_completion = {
-								enabled = true,
-								fuzzy = true,
-								eager = true,
-								include_class_objects = true,
-								include_function_objects = true,
-							},
-							rope = {
-								ropeFolder = { ".ropeproject" },
-							},
-							rope_autoimport = {
-								enabled = true,
-								memory = false,
-								completions = {
-									enabled = true,
-								},
-								code_actions = {
-									enabled = true,
-								},
-							},
-							rope_completion = {
-								enabled = false,
-								eager = true,
-							},
-							ruff = {
-								enabled = true,
-								formatEnabled = true,
-								format = { "I" },
-								extendSelect = { "ALL" },
-								extendIgnore = { "CPY", "ANN", "D", "PL", "FA" },
-								extendFixable = { "ALL" },
-								extendSafeFixes = { "ALL" },
-								unsafeFixes = true,
-								lineLength = 120,
-								preview = true,
-							},
-							pylsp_mypy = {
-								enabled = true,
-								live_mode = true,
-								strict = true,
-							},
-							signature = {
-								formatter = "ruff",
-								line_length = 120,
-								memory = true,
-							},
-						},
-					},
-				},
-			})
-		end,
 	},
 })
 
