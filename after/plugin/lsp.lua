@@ -121,7 +121,9 @@ require("mason-lspconfig").setup({
 	ensure_installed = {
 		-- LSPs
 		"rust_analyzer",
-		"pylsp",
+		-- "pylsp",
+		"basedpyright",
+		"ruff",
 		"lua_ls",
 		"gopls",
 		"zls",

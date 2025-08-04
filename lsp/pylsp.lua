@@ -41,6 +41,9 @@ return {
 					line_length = 120,
 					memory = true,
 				},
+				yapf = {
+					enabled = false,
+				},
 			},
 		},
 	},

@@ -2,8 +2,8 @@ local conform = require("conform")
 local lint = require("lint")
 
 local conform_opts = {
-	timeout_ms = 1500,
-	async = false,
+	timeout_ms = 5000,
+	async = true,
 	lsp_format = "first",
 }
 conform.setup({
