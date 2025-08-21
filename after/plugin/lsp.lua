@@ -164,10 +164,10 @@ require("mason-lspconfig").setup({
 })
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
 cmp.setup({
 	sources = {
 		{ name = "luasnip", keyword_length = 2 },
+		{ name = "cmp_ai" },
 		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{ name = "nvim_lua" },
@@ -180,6 +180,16 @@ cmp.setup({
 		["<C-i>"] = cmp.mapping.confirm({ select = true, behavior = cmp.SelectBehavior.Replace }),
 		["<Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.SelectBehavior.Replace }),
 		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-x>"] = cmp.mapping(
+			cmp.mapping.complete({
+				config = {
+					sources = cmp.config.sources({
+						{ name = "cmp_ai" },
+					}),
+				},
+			}),
+			{ "i" }
+		),
 		["<C-q>"] = cmp.mapping.close(),
 	}),
 })
