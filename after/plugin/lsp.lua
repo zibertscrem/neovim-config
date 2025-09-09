@@ -167,7 +167,6 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 cmp.setup({
 	sources = {
 		{ name = "luasnip", keyword_length = 2 },
-		{ name = "cmp_ai" },
 		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{ name = "nvim_lua" },

@@ -2,7 +2,7 @@ local cmp_ai = require("cmp_ai.config")
 
 cmp_ai:setup({
 	max_lines = 100,
-	max_timeout_seconds = 8,
+	max_timeout_seconds = 60,
 	provider = "Ollama",
 	provider_options = {
 		model = "codellama:7b-code",
