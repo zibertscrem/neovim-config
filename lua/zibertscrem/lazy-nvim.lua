@@ -140,6 +140,6 @@ require("lazy").setup({
 		"hiphish/rainbow-delimiters.nvim",
 	},
 	{
-		"smithbm2316/centerpad.nvim",
+		"folke/zen-mode.nvim",
 	},
 })
