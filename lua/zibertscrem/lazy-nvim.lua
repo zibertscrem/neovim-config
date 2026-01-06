@@ -189,4 +189,7 @@ require("lazy").setup({
 			},
 		},
 	},
+	{
+		"xTacobaco/cursor-agent.nvim",
+	},
 })
