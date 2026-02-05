@@ -89,19 +89,19 @@ local function on_attach(_, bufnr)
 end
 
 lsp_zero.on_attach(on_attach)
-require("lspconfig").mojo.setup({
+vim.lsp.config["mojo"] = {
 	on_attach = on_attach,
-})
+}
 
 if os.getenv("WSL_DISTRO_NAME") ~= nil then -- Easy way to check if it is WSL or no
-	require("lspconfig").gdscript.setup({
+	vim.lsp.config["gdscript"] = {
 		on_attach = on_attach, -- Your buffer on_attach function
 		cmd = { "godot-wsl-proxy", "run" },
-	})
+	}
 else
-	require("lspconfig").gdscript.setup({
+	vim.lsp.config["gdscript"] = {
 		on_attach = on_attach, -- Your buffer on_attach function
-	})
+	}
 end
 
 require("mason").setup({})
@@ -129,7 +129,7 @@ require("mason-lspconfig").setup({
 		lua_ls = function()
 			require("neodev").setup({})
 			local lua_opts = lsp_zero.nvim_lua_ls()
-			require("lspconfig").lua_ls.setup(lua_opts)
+			vim.lsp.config["lua_ls"] = lua_opts
 		end,
 		gopls = function()
 			local go_opts = {
@@ -144,7 +144,7 @@ require("mason-lspconfig").setup({
 				},
 				-- rest of your config.
 			}
-			require("lspconfig").gopls.setup(go_opts)
+			vim.lsp.config["gopls"] = go_opts
 		end,
 		jdtls = function() end,
 		rust_analyzer = function() end,
