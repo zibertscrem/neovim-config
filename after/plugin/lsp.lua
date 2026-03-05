@@ -40,6 +40,9 @@ local function on_attach(_, bufnr)
 		-- Document diagnostics
 		telescope_builtin.diagnostics({ bufnr = 0 })
 	end, opts)
+	vim.keymap.set("n", "<leader>d", function()
+		vim.diagnostic.open_float()
+	end, opts)
 	vim.keymap.set("n", "<leader>wd", function()
 		-- Workspace diagnostics
 		telescope_builtin.diagnostics()
