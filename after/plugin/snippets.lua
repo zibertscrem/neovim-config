@@ -17,6 +17,7 @@ local p = extras.partial
 local m = extras.match
 local n = extras.nonempty
 local dl = extras.dynamic_lambda
+local rep = extras.rep
 local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local conds = require("luasnip.extras.expand_conditions")
@@ -28,8 +29,51 @@ local k = require("luasnip.nodes.key_indexer").new_key
 
 ls.add_snippets("python", {
     s("main", {
-        t('if __name__ == "__main__":'),
+        c(1, {
+            sn(nil, {
+                t('if __name__ == "__main__":'),
+                t({ "", "\t" }),
+                r(1, "content", i(1, "pass")),
+            }),
+            sn(nil, {
+                t("def main() -> None:"),
+                t({ "", "\t" }),
+                r(1, "content"),
+                t({ "", 'if __name__ == "__main__":' }),
+                t({ "", "\tmain()" }),
+            }),
+        }),
+    }),
+    s("all", {
+        t("__all__ = ["),
         t({ "", "\t" }),
-        i(0, "pass"),
+        i(1),
+        t({ "", "]" }),
     }),
 })
+vim.keymap.set("i", "<C-s>", function()
+    if ls.expandable() then
+        ls.expand()
+    end
+end)
+vim.keymap.set({ "i", "s" }, "<C-l>", function()
+    if ls.in_snippet() and ls.locally_jumpable(1) then
+        ls.jump(1)
+    end
+end)
+
+vim.keymap.set({ "i", "s" }, "<C-h>", function()
+    if ls.in_snippet() and ls.locally_jumpable(-1) then
+        ls.jump(-1)
+    end
+end)
+vim.keymap.set({ "i", "s" }, "<C-j>", function()
+    if ls.in_snippet() and ls.choice_active() then
+        ls.change_choice(1)
+    end
+end)
+vim.keymap.set({ "i", "s" }, "<C-k>", function()
+    if ls.in_snippet() and ls.choice_active() then
+        ls.change_choice(-1)
+    end
+end)
