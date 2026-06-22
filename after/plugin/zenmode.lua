@@ -1,7 +1,12 @@
 vim.keymap.set("n", "<leader>z", function()
-	require("zen-mode").toggle({
-		window = {
-			width = 0.6, -- width will be 85% of the editor width
-		},
-	})
+    require("zen-mode").toggle({
+        window = {
+            width = 0.6, -- width will be 85% of the editor width
+            options = {
+                wrap = true,
+                linebreak = true,
+                list = false,
+            },
+        },
+    })
 end, { silent = true, noremap = true })
