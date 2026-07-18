@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
 	},
 	{
 		"nvim-lua/plenary.nvim",
@@ -28,10 +27,6 @@ require("lazy").setup({
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
 	},
 	{
 		"mbbill/undotree",
@@ -78,10 +73,6 @@ require("lazy").setup({
 	},
 	{ "mfussenegger/nvim-lint" },
 	{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
-	{
-		"venomlab/goimpl.nvim",
-		tag = "0.1.0",
-	},
 	{ "derektata/lorem.nvim" },
 	{ "mfussenegger/nvim-dap" },
 	{ "theHamsta/nvim-dap-virtual-text" },
@@ -152,44 +143,5 @@ require("lazy").setup({
 				},
 			})
 		end,
-	},
-	{
-		"javiorfo/nvim-soil",
-
-		-- Optional for puml syntax highlighting:
-		dependencies = { "javiorfo/nvim-nyctophilia" },
-
-		lazy = true,
-		ft = "plantuml",
-		opts = {
-			-- If you want to change default configurations
-
-			-- This option closes the image viewer and reopen the image generated
-			-- When true this offers some kind of online updating (like plantuml web server)
-			actions = {
-				redraw = true,
-			},
-
-			-- If you want to use Plant UML jar version instead of the installed version
-			-- puml_jar = "/path/to/plantuml.jar",
-
-			-- If you want to customize the image showed when running this plugin
-			image = {
-				darkmode = true, -- Enable or disable darkmode
-				format = "png", -- Choose between png or svg
-
-				-- This is a default implementation of using nsxiv to open the resultant image
-				-- Edit the string to use your preferred app to open the image (as if it were a command line)
-				-- Some examples:
-				-- return "feh " .. img
-				-- return "xdg-open " .. img
-				execute_to_open = function(img)
-					return "feh " .. img
-				end,
-			},
-		},
-	},
-	{
-		"xTacobaco/cursor-agent.nvim",
 	},
 })

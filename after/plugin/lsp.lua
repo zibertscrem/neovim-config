@@ -83,12 +83,6 @@ local function on_attach(_, bufnr)
 			end
 		end
 	end, opts)
-	local goimpl = require("goimpl")
-	if goimpl.is_go() then
-		vim.keymap.set("n", "<leader>im", function()
-			goimpl.impl()
-		end, opts)
-	end
 end
 
 lsp_zero.on_attach(on_attach)
