@@ -64,7 +64,6 @@ require("lazy").setup({
 	{
 		"numToStr/Comment.nvim",
 		opts = {},
-		tag = "v0.8.0",
 		lazy = false,
 	},
 	{
@@ -134,14 +133,9 @@ require("lazy").setup({
 		"folke/zen-mode.nvim",
 	},
 	{
-		"https://gitlab.com/itaranto/plantuml.nvim",
-		version = "*",
-		config = function()
-			require("plantuml").setup({
-				renderer = {
-					type = "text",
-				},
-			})
-		end,
+		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
+		build = ":TSUpdate",
 	},
 })
